@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //UI widgets
     private Button m_btnLogin;
+    private Button m_btnSignup;
     private EditText m_txtUsername;
     private EditText m_txtPassword;
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Wiring : Initializing UI controls.
         m_btnLogin = findViewById(R.id.btnLogin);
+        m_btnSignup = findViewById(R.id.btnSignup1);
         m_txtUsername = findViewById(R.id.txtUsername);
         m_txtPassword = findViewById(R.id.txtPassword);
 
@@ -55,6 +57,12 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), MANDATORY_LOGIN_FIELDS, Toast.LENGTH_SHORT).show();
             }
+        });
+
+        m_btnSignup.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+            intent.putExtra("Data", data);
+            startActivity(intent);
         });
     }
 }

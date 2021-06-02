@@ -5,4 +5,18 @@
     <string name="btnSignupText">Signup</string>
     <string name="btnLoginText">Login</string>
     <string name="Login">Login</string>
+
+    <!-- sign up page -->
+    <string name="hint_username">Enter username</string>
+    <string name="hints_email">Enter email</string>
+    <string name="hints_password">Enter password</string>
+    <string name="hints_password2">Retype password</string>
+    <string name="hints_phone">Enter Phone</string>
+    <string name="btn_signup">Sign me up!</string>
+    <string name="toast_username_exists">Username already exists!</string>
+    <string name="toast_password_mismatch">Password do not match!</string>
+    <string name="toast_invalid_email">Invalid email! (Expected: xyz@xyz)</string>
+    <string name="toast_invalid_phone">Invalid phone number!</string>
+    <string name="toast_empty_username">Username cannot be empty</string>
+    <string name="toast_signup_success">Signed up successfully</string>
 </resources>
