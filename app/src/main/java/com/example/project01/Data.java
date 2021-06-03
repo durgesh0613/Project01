@@ -1,5 +1,6 @@
 package com.example.project01;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class Data {

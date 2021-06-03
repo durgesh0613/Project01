@@ -39,7 +39,7 @@
 
 
     <Button
-        android:id="@+id/btnSignup"
+        android:id="@+id/btnSignup1"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -58,7 +58,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/btnLoginText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSignup"
+        app:layout_constraintEnd_toStartOf="@+id/btnSignup1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/txtPassword"
         app:layout_constraintTop_toBottomOf="@+id/txtPassword"
