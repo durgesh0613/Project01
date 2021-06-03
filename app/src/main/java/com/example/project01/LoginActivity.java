@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(welcomeIntent);
                 } else {
                     Toast.makeText(getApplicationContext(), INCORRECT_CREDENTIALS, Toast.LENGTH_SHORT).show();
+                    m_txtPassword.getText().clear();
                 }
 
             } else {
@@ -61,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
 
         m_btnSignup.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-            intent.putExtra("Data", data);
             startActivity(intent);
         });
     }

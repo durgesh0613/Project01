@@ -9,11 +9,9 @@
 
     <EditText
         android:id="@+id/editTextUsername"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="40dp"
         android:autofillHints="@string/hint_username"
         android:ems="10"
@@ -28,10 +26,8 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="40dp"
         android:autofillHints="@string/hints_password"
         android:ems="10"
@@ -43,10 +39,8 @@
 
     <EditText
         android:id="@+id/editTextPassword2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="40dp"
         android:autofillHints="@string/hints_password2"
         android:ems="10"
@@ -59,10 +53,8 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="40dp"
         android:autofillHints="@string/hints_email"
         android:ems="10"
@@ -76,11 +68,9 @@
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
         android:autofillHints="@string/hints_phone"
         android:ems="10"
         android:hint="@string/hints_phone"
@@ -94,7 +84,7 @@
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="120dp"
         android:text="@string/btn_signup"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"

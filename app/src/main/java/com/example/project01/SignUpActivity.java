@@ -3,11 +3,17 @@ package com.example.project01;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+
+import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -15,10 +21,9 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText textUsername;
     private EditText textPassword;
     private EditText textPassword2;
-    private EditText textEmail;
-    private EditText textPhone;
     private Button btnSignUp;
     Context context;
+    AwesomeValidation awesomeValidation = new AwesomeValidation(COLORATION);
 
 
     @Override
@@ -30,29 +35,42 @@ public class SignUpActivity extends AppCompatActivity {
         textUsername = findViewById(R.id.editTextUsername);
         textPassword = findViewById(R.id.editTextPassword);
         textPassword2 = findViewById(R.id.editTextPassword2);
-        textEmail = findViewById(R.id.editTextEmail);
-        textPhone = findViewById(R.id.editTextPhone);
         btnSignUp = findViewById(R.id.btnSignUp);
         context = getApplicationContext();
 
-        Intent intent = getIntent();
-        Data d = (Data)intent.getSerializableExtra("Data");
+        //Adding validations
+
+        //regex patterns
+        //Username should contain only alphabets and should not be empty
+        String regexUname = "[a-zA-Z\\s]+";
+        //Password must contain at least 1 lower case, 1 upper case, 1 special character, 1 digit
+        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
+
+        //addValidation(activity, pattern, error_string)
+        awesomeValidation.addValidation(this, R.id.editTextUsername, regexUname , R.string.err_invalid_username);
+        awesomeValidation.addValidation(this, R.id.editTextPassword, regexPassword, R.string.err_invalid_password);
+        awesomeValidation.addValidation(this, R.id.editTextPassword2, regexPassword, R.string.err_invalid_password);
+        awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.err_invalid_email);
+        awesomeValidation.addValidation(this, R.id.editTextPhone, RegexTemplate.TELEPHONE, R.string.err_invalid_phone);
+
+
+
+        //Initialize the helper Data class
+        Data data = new Data();
 
         //listeners
         btnSignUp.setOnClickListener(view -> {
-            String username, password, password2, email, phone;
-            StringBuffer errorString = new StringBuffer("");
+            String username, password, password2;
+            StringBuffer errorString = new StringBuffer();
             username = textUsername.getText().toString();
             password = textPassword.getText().toString();
             password2 = textPassword2.getText().toString();
-            email = textEmail.getText().toString();
-            phone = textPhone.getText().toString();
 
             //check username uniqueness
             if(username.isEmpty()){
                 errorString.append(getString(R.string.toast_empty_username)).append("\n");
             }
-            else if(d.CheckUsername(username)){
+            else if(data.CheckUsername(username)){
                 errorString.append(getString(R.string.toast_username_exists)).append("\n");
             }
 
@@ -61,23 +79,16 @@ public class SignUpActivity extends AppCompatActivity {
                 errorString.append(getString(R.string.toast_password_mismatch)).append("\n");
             }
 
-            //check valid email
-            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-            if(email.isEmpty() || !email.matches(emailPattern)){
-                errorString.append(getString(R.string.toast_invalid_email)).append("\n");
-            }
-
-            //check valid phone
-            String phonePattern = "^\\+[0-9]{10,13}$";
-            if(phone.isEmpty() || !phone.matches(phonePattern)){
-                errorString.append(getString(R.string.toast_invalid_phone)).append("\n");
+            if(!awesomeValidation.validate()){
+                errorString = new StringBuffer();
+                errorString.append("Please fix the highlighted errors");
             }
 
             if(!errorString.toString().isEmpty()){
-                Toast.makeText(context, errorString.toString().trim(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, errorString.toString().trim(), Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(context, R.string.toast_signup_success, Toast.LENGTH_SHORT).show();
-                d.AddCredential(username, password);
+                data.AddCredential(username, password);
                 Intent loginIntent = new Intent(context, LoginActivity.class);
                 startActivity(loginIntent);
             }
