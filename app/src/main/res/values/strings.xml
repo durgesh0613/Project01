@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Project01</string>
+    <!--    Login Activity-->
     <string name="enter_username">User name</string>
     <string name="enter_password">Password</string>
     <string name="btnSignupText">Signup</string>
     <string name="btnLoginText">Login</string>
     <string name="Login">Login</string>
+    <!--    Login Activity Error Messages-->
+    <string name="err_IncorrectCredentials">Incorrect Credentials</string>
+    <string name="err_emptyCredentials">Login Credentials empty</string>
+    <!--    Login to Welcome Activity extra keys-->
+    <string name="ext_login_username">USER_NAME</string>
 
     <!-- sign up page -->
     <string name="hint_username">Enter username</string>

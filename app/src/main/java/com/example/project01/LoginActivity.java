@@ -12,13 +12,6 @@ import com.example.project01.utilities.ValidationUtility;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Error messages for toast.
-    private static final String INCORRECT_CREDENTIALS = "Incorrect Credentials";
-    private static final String MANDATORY_LOGIN_FIELDS = "Login Credentials empty";
-
-    //Data key passed to the Welcome activity.
-    private static final String USER_NAME = "USER_NAME";
-
     //UI widgets
     private Button m_btnLogin;
     private Button m_btnSignup;
@@ -48,15 +41,15 @@ public class LoginActivity extends AppCompatActivity {
             if (!ValidationUtility.isAnyEmpty(username, password)) {
                 if (this.data.CheckCredentials(username, password)) {
                     Intent welcomeIntent = new Intent(this, WelcomeActivity.class);
-                    welcomeIntent.putExtra(USER_NAME, username);
+                    welcomeIntent.putExtra(getString(R.string.ext_login_username), username);
                     startActivity(welcomeIntent);
                 } else {
-                    Toast.makeText(getApplicationContext(), INCORRECT_CREDENTIALS, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.err_IncorrectCredentials, Toast.LENGTH_SHORT).show();
                     m_txtPassword.getText().clear();
                 }
 
             } else {
-                Toast.makeText(getApplicationContext(), MANDATORY_LOGIN_FIELDS, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.err_emptyCredentials, Toast.LENGTH_SHORT).show();
             }
         });
 

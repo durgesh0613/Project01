@@ -47,12 +47,11 @@ public class SignUpActivity extends AppCompatActivity {
         String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
 
         //addValidation(activity, pattern, error_string)
-        awesomeValidation.addValidation(this, R.id.editTextUsername, regexUname , R.string.err_invalid_username);
+        awesomeValidation.addValidation(this, R.id.editTextUsername, regexUname, R.string.err_invalid_username);
         awesomeValidation.addValidation(this, R.id.editTextPassword, regexPassword, R.string.err_invalid_password);
         awesomeValidation.addValidation(this, R.id.editTextPassword2, regexPassword, R.string.err_invalid_password);
         awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.err_invalid_email);
         awesomeValidation.addValidation(this, R.id.editTextPhone, RegexTemplate.TELEPHONE, R.string.err_invalid_phone);
-
 
 
         //Initialize the helper Data class
@@ -67,26 +66,25 @@ public class SignUpActivity extends AppCompatActivity {
             password2 = textPassword2.getText().toString();
 
             //check username uniqueness
-            if(username.isEmpty()){
+            if (username.isEmpty()) {
                 errorString.append(getString(R.string.toast_empty_username)).append("\n");
-            }
-            else if(data.CheckUsername(username)){
+            } else if (data.CheckUsername(username)) {
                 errorString.append(getString(R.string.toast_username_exists)).append("\n");
             }
 
             //check password match
-            if(!password.equals(password2)){
+            if (!password.equals(password2)) {
                 errorString.append(getString(R.string.toast_password_mismatch)).append("\n");
             }
 
-            if(!awesomeValidation.validate()){
+            if (!awesomeValidation.validate()) {
                 errorString = new StringBuffer();
                 errorString.append("Please fix the highlighted errors");
             }
 
-            if(!errorString.toString().isEmpty()){
+            if (!errorString.toString().isEmpty()) {
                 Toast.makeText(context, errorString.toString().trim(), Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 Toast.makeText(context, R.string.toast_signup_success, Toast.LENGTH_SHORT).show();
                 data.AddCredential(username, password);
                 Intent loginIntent = new Intent(context, LoginActivity.class);
