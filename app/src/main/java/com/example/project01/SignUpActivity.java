@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (!awesomeValidation.validate()) {
                 errorString = new StringBuffer();
-                errorString.append("Please fix the highlighted errors");
+                errorString.append(getString(R.string.toast_validation_error));
             }
 
             if (!errorString.toString().isEmpty()) {
