@@ -38,18 +38,13 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
         context = getApplicationContext();
 
-        //Adding validations
-
-        //regex patterns
-        //Username should contain only alphabets and should not be empty
-        String regexUname = "[a-zA-Z\\s]+";
-        //Password must contain at least 1 lower case, 1 upper case, 1 special character, 1 digit
-        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
-
-        //addValidation(activity, pattern, error_string)
-        awesomeValidation.addValidation(this, R.id.editTextUsername, regexUname, R.string.err_invalid_username);
-        awesomeValidation.addValidation(this, R.id.editTextPassword, regexPassword, R.string.err_invalid_password);
-        awesomeValidation.addValidation(this, R.id.editTextPassword2, regexPassword, R.string.err_invalid_password);
+        /*
+        Adding validations
+        addValidation(activity, pattern, error_string)
+        */
+        awesomeValidation.addValidation(this, R.id.editTextUsername, getString(R.string.regex_uname), R.string.err_invalid_username);
+        awesomeValidation.addValidation(this, R.id.editTextPassword, getString(R.string.regex_password), R.string.err_invalid_password);
+        awesomeValidation.addValidation(this, R.id.editTextPassword2, getString(R.string.regex_password), R.string.err_invalid_password);
         awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.err_invalid_email);
         awesomeValidation.addValidation(this, R.id.editTextPhone, RegexTemplate.TELEPHONE, R.string.err_invalid_phone);
 
@@ -66,9 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
             password2 = textPassword2.getText().toString();
 
             //check username uniqueness
-            if (username.isEmpty()) {
-                errorString.append(getString(R.string.toast_empty_username)).append("\n");
-            } else if (data.CheckUsername(username)) {
+            if (data.CheckUsername(username)) {
                 errorString.append(getString(R.string.toast_username_exists)).append("\n");
             }
 
